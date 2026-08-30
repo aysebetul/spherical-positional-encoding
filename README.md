@@ -33,7 +33,24 @@ SPE is:
 - derived from physical electrode locations;
 - parameter-free and precomputed;
 - applicable to different EEG montages;
-- invariant to global coordinate scaling and head-size differences.
+
+
+<p align="center">
+  <img
+    src="assets/spe.png"
+    alt="Overview of Spherical Positional Encoding for EEG"
+    width="700"
+  >
+</p>
+
+<p align="center">
+  <em>
+    Montage-derived spherical channel coordinates and temporal window indices
+    are encoded separately and combined to form the final positional encoding.
+    Adapted from Yüce and Stober (2026).
+  </em>
+</p>
+
 
 ## Installation
 
@@ -149,22 +166,20 @@ mapping, SPE multiplies both angular coordinates by one global
 The default value reproduces the configuration reported in the paper:
 
 ```python
-PAPER_SPATIAL_SCALE = 180.0 / math.pi
+spatial_scale = 180.0 / math.pi
 ```
 
 ```python
-from spherical_positional_encoding import (
-    PAPER_SPATIAL_SCALE,
-    RADIAN_SPATIAL_SCALE,
-    SphericalPositionalEncoding,
-)
+import math
 
-# Paper configuration; this is also the default.
+from spherical_positional_encoding import SphericalPositionalEncoding
+
+# Paper configuration; 180 / pi is already the default.
 paper_spe = SphericalPositionalEncoding(
     64,
     "standard_1020",
     ch_names=channel_names,
-    spatial_scale=PAPER_SPATIAL_SCALE,
+    spatial_scale=180.0 / math.pi,
 )
 
 # Unscaled radian coordinates.
@@ -172,13 +187,13 @@ radian_spe = SphericalPositionalEncoding(
     64,
     "standard_1020",
     ch_names=channel_names,
-    spatial_scale=RADIAN_SPATIAL_SCALE,
+    spatial_scale=1.0,
 )
 ```
 
 The scale controls the angular frequency range of the resulting positional
-features. `PAPER_SPATIAL_SCALE` is mathematically equivalent to applying the
-sinusoidal mapping to degree-valued spherical coordinates.
+features. The default `180.0 / math.pi` value is mathematically equivalent to
+applying the sinusoidal mapping to degree-valued spherical coordinates.
 
 ## Temporal positional encoding
 
@@ -245,7 +260,7 @@ parameters and remaining applicable across montages.
   title     = {Benchmarking Positional Encoding Strategies for
                Transformer-Based EEG Foundation Models: A Systematic Comparison},
   author    = {Yüce, Ayşe Betül and Stober, Sebastian},
-  booktitle = {Proceedings of the 10th Graz Brain-Computer Interface Conference},
+  note   = {Accepted at the 10th Graz Brain-Computer Interface Conference},
   year      = {2026}
 }
 ```
