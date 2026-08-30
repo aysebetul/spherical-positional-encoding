@@ -39,7 +39,7 @@ SPE is:
   <img
     src="assets/spe.png"
     alt="Overview of Spherical Positional Encoding for EEG"
-    width="700"
+    width="400"
   >
 </p>
 
