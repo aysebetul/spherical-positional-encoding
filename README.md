@@ -181,19 +181,10 @@ paper_spe = SphericalPositionalEncoding(
     ch_names=channel_names,
     spatial_scale=180.0 / math.pi,
 )
-
-# Unscaled radian coordinates.
-radian_spe = SphericalPositionalEncoding(
-    64,
-    "standard_1020",
-    ch_names=channel_names,
-    spatial_scale=1.0,
-)
 ```
 
-The scale controls the angular frequency range of the resulting positional
-features. The default `180.0 / math.pi` value is mathematically equivalent to
-applying the sinusoidal mapping to degree-valued spherical coordinates.
+The default `spatial_scale=180.0 / math.pi` reproduces the configuration used in the paper. 
+For direct encoding of radian-valued angles, use `spatial_scale=1.0`.
 
 ## Temporal positional encoding
 
