@@ -247,6 +247,9 @@ SPE was introduced in:
 > Strategies for Transformer-Based EEG Foundation Models: A Systematic
 > Comparison.** 10th Graz Brain-Computer Interface Conference, 2026.
 
+[Paper on arXiv](https://arxiv.org/abs/2605.29754) ·
+[PDF](https://arxiv.org/pdf/2605.29754)
+
 The paper evaluates SPE within the CBraMod backbone under linear-probing and
 fine-tuning protocols on motor-imagery and emotion-recognition tasks. The
 results indicate that positional-encoding performance is task-dependent; SPE
